@@ -1,0 +1,109 @@
+:root{
+	--grid-width:14vw;
+	--grid-height:var(--grid-width);
+}
+
+#root{
+	margin:0;
+	padding:0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.board{
+	display:grid;
+	grid-template-columns: repeat(3, var(--grid-width));
+}
+
+
+.cell{
+	height: var(--grid-height);
+	border: solid 10px black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.cell:nth-child(3n+1){
+	border-left:0;
+}
+
+.cell:nth-child(3n){
+	border-right:0;
+}
+.cell:nth-child(1),
+.cell:nth-child(2),
+.cell:nth-child(3){
+	border-top:0;
+}
+
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9){
+	border-bottom:0;
+}
+
+.board .cell[value="Circle"]::after,
+.board .cell[value="Circle"]::before,
+.board[turn="Circle"] .cell[value=""]:hover::after,
+.board[turn="Circle"] .cell[value=""]:hover::before {
+  content: '';
+  position: absolute;
+	border-radius: 50%;
+}
+
+.cell[value="Circle"]::after{
+  width: calc(var(--grid-height)*0.7);
+  height: calc(var(--grid-height)*0.7);
+	background-color: white;
+}
+
+.cell[value="Circle"]::before{
+  width: calc(var(--grid-height)*0.9);
+  height: calc(var(--grid-height)*0.9);
+	background-color: black;
+}
+
+.board[turn="Circle"] .cell[value=""]:hover::after{ 
+  width: calc(var(--grid-height)*0.7);
+  height: calc(var(--grid-height)*0.7);
+	background-color: white;
+}
+
+.board[turn="Circle"] .cell[value=""]:hover::before{ 
+  width: calc(var(--grid-height)*0.9);
+  height: calc(var(--grid-height)*0.9);
+	background-color: lightgrey;
+}
+
+.board .cell[value="X"]::after,
+.board .cell[value="X"]::before, 
+.board[turn="X"] .cell[value=""]:hover::after,
+.board[turn="X"] .cell[value=""]:hover::before {
+  content: '';
+  position: absolute;
+  width: calc(var(--grid-height)*0.15);
+  height: var(--grid-height);
+}
+
+.cell[value="X"]::after{
+	transform:rotate(45deg);
+	background-color: black;
+}
+
+.cell[value="X"]::before{
+	transform:rotate(-45deg);
+	background-color: black;
+}
+
+.board[turn="X"] .cell[value=""]:hover::after{ 
+	transform:rotate(45deg);
+	background-color: lightgrey;
+}
+
+.board[turn="X"] .cell[value=""]:hover::before{ 
+	transform:rotate(-45deg);
+	background-color: lightgrey;
+}
